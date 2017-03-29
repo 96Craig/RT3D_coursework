@@ -47,6 +47,7 @@ SDL_Window * setupRC(SDL_GLContext &context) {
 void init() {
 	std::vector<char *> textures;
 	std::vector<char *> meshes;
+
 	textures.push_back("floor_tiles.bmp");
 	textures.push_back("fabric.bmp");
 	textures.push_back("brick.bmp");
@@ -63,11 +64,12 @@ void init() {
 	scene->addGameObject("wall4", glm::vec3(-89.0f, 3.0f, 10.0f), glm::vec3(1.0f, 4.0f, 100.0f), "brick.bmp", "cube.obj");
 	scene->addGameObject("building", glm::vec3(50.0f, 40.1f, 50.0f), glm::vec3(40.0f, 40.0f, 40.0f), "building.bmp", "cube.obj");
 	scene->addGameObject("building2", glm::vec3(-45.0f, 40.1f, -45.0f), glm::vec3(40.0f, 40.0f, 40.0f), "building.bmp", "cube.obj");
+
 }
 
 void update() {
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
-
+	scene->updateLight();
 	if (keys[SDL_SCANCODE_W] || keys[SDL_SCANCODE_S] || keys[SDL_SCANCODE_A] || keys[SDL_SCANCODE_D]) {
 		if (keys[SDL_SCANCODE_W]) { scene->movePlayerForward(0.1f); };
 		if (keys[SDL_SCANCODE_S]) scene->movePlayerForward(-0.1f);
